@@ -16,4 +16,4 @@ set -e
 # Authenticate npm token
 cd dist && echo "//registry.npmjs.org/:_authToken=$CI_NPM_TOKEN" > ~/repo/.npmrc
 # Publish React-FX to npm
-cd dist && npm publish
+npm publish
