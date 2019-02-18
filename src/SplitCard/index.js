@@ -1,3 +1,11 @@
+/**
+ * @file index.js
+ * @author Paul Cheor Kim
+ * @license MIT
+ * @fileoverview Entrypoint for the SplitCard Component. 
+ * This module also neatly "packages" and exports other 
+ * files/ variables of interest.
+ */
 import React, { PureComponent } from "react";
 import { STYLES } from "./constants.js";
 import "./styles.css";

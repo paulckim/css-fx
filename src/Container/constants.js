@@ -1,3 +1,9 @@
+/**
+ * @file constants.js
+ * @author Paul Cheor Kim
+ * @license MIT
+ * @fileoverview All public constants for the Container Component.
+ */
 const STYLES = Object.freeze({
   fxContainer: "fx-container"
 });
