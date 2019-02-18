@@ -25,9 +25,5 @@
   ],
   "bugs": {
     "url": "https://github.com/paulckim/react-fx/issues"
-  },
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
