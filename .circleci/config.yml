@@ -2,9 +2,6 @@
 version: 2
 jobs:
   publish-dry-run:
-    # branches:
-    #   only:
-    #     - master
     docker:
       - image: circleci/node
     working_directory: ~/repo
@@ -19,9 +16,6 @@ jobs:
       - run: ./scripts/package.sh
       - run: ./scripts/publish-dry-run.sh
   publish:
-    # branches:
-    #   only:
-    #     - master
     docker:
       - image: circleci/node
     working_directory: ~/repo
@@ -45,3 +39,6 @@ workflows:
           requires:
             - publish-dry-run
           type: approval
+          filters:
+            branches:
+              only: master
