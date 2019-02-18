@@ -42,5 +42,6 @@ workflows:
     jobs:
       - publish-dry-run
       - publish:
-          requires: publish-dry-run
+          requires:
+            - publish-dry-run
           type: approval
