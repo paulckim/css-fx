@@ -37,7 +37,8 @@ jobs:
       - run: ./scripts/publish.sh
 
 workflows:
-  publish:
+  version: 2
+  publish-workflow:
     jobs:
       - publish-dry-run
       - publish:
