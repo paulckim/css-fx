@@ -1,40 +1,44 @@
 # CircleCI pipeline for publishing to NPM
 # FIXME: automate NPM publish only on origin/<branch> -> origin/master merge
 version: 2
-npm-pubish-workflow:
-  jobs:
-    package:
-      # branches:
-      #   only:
-      #     - master
-      docker:
-        # specify the version you desire here
-        - image: circleci/node
-      working_directory: ~/repo
-      steps:
-        - checkout
-        # Download and cache dependencies
-        - restore_cache:
-            keys:
-              - v1-dependencies-{{ checksum "package.json" }}
-              # fallback to using the latest cache if no exact match is found
-              - v1-dependencies-
-        - run: ./scripts/package.sh
-      store_artifacts:
-        path: /scripts
-      store_artifacts:
-        path: /dist
+jobs:
+  package:
+    # branches:
+    #   only:
+    #     - master
+    docker:
+      - image: circleci/node
+    working_directory: ~/repo
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: ./scripts/package.sh
+    store_artifacts:
+      path: /scripts
+    store_artifacts:
+      path: /dist
 
-    publish:
-      # type: approval
-      requires:
-        - package
-      # branches:
-      #   only:
-      #     - master
-      docker:
-        # specify the version you desire here
-        - image: circleci/node
-      working_directory: ~/repo
-      steps:
-        - run: ./scripts/publish.sh
+  publish:
+    # type: approval
+    requires:
+      - package
+    # branches:
+    #   only:
+    #     - master
+    docker:
+      - image: circleci/node
+    working_directory: ~/repo
+    steps:
+      - run: ./scripts/publish.sh
+
+workflows:
+  version: 2
+  npm-pubish-workflow:
+    jobs:
+      - package
+      - publish
