@@ -14,6 +14,7 @@
 # Refuse to proceed if a command fails
 set -e
 # Authenticate npm token
-cd dist && echo "//registry.npmjs.org/:_authToken=$CI_NPM_TOKEN" > .npmrc
-# Publish React-FX to npm
-npm publish
+ls -la
+# cd dist && echo "//registry.npmjs.org/:_authToken=$CI_NPM_TOKEN" > .npmrc
+# # Publish React-FX to npm
+# npm publish
