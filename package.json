@@ -6,6 +6,12 @@
     "name": "Paul Kim",
     "email": "contact@paulckim.com"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/paulckim/react-fx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulckim/react-fx.git"
+  },
   "devDependencies": {
     "ava": "^1.2.1",
     "react-test-renderer": "^16.8.1"
@@ -14,5 +20,10 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
-  }
+  },
+  "keywords": [
+    "react",
+    "fx",
+    "css"
+  ]
 }
