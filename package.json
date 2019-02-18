@@ -15,6 +15,9 @@
   },
   "devDependencies": {
     "ava": "^1.2.1",
+    "gulp-babel": "^8.0.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "react-test-renderer": "^16.8.1"
   },
   "bugs": {
