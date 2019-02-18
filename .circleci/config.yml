@@ -14,9 +14,9 @@ jobs:
             - v1-dependencies-
       - run: ./scripts/package.sh
       - store_artifacts:
-          path: /scripts
+          path: ~/repo/scripts
       - store_artifacts:
-          path: /dist
+          path: ~/repo/dist
   publish:
     requires:
       - package
