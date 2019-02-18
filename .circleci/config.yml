@@ -13,10 +13,10 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: ./scripts/package.sh
-      store_artifacts:
-        path: /scripts
-      store_artifacts:
-        path: /dist
+      - store_artifacts:
+          path: /scripts
+      - store_artifacts:
+          path: /dist
   publish:
     requires:
       - package
