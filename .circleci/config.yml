@@ -2,7 +2,7 @@
 # FIXME: automate NPM publish only on origin/<branch> -> origin/master merge
 version: 2
 jobs:
-  package:
+  publish:
     docker:
       - image: circleci/node
     working_directory: ~/repo
@@ -13,23 +13,4 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: ./scripts/package.sh
-      - store_artifacts:
-          path: /repo/scripts
-      - store_artifacts:
-          path: /repo/dist
-  publish:
-    requires:
-      - package
-    docker:
-      - image: circleci/node
-    working_directory: ~/repo
-    steps:
-      - run: ls -la
       - run: ./scripts/publish.sh
-
-workflows:
-  version: 2
-  npm-pubish:
-    jobs:
-      - package
-      - publish
