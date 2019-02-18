@@ -13,11 +13,11 @@
 
 # Refuse to proceed if a command fails
 set -e
-# Setup distribution directory
-rm -rf dist; mkdir dist
+# Setup and build distribution
+yarn build
 # Copy React source code
 cp package.json dist
 cp yarn.lock dist
-cp -r src/* dist
+
 # Add license
 cp LICENSE dist

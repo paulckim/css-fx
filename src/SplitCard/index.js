@@ -37,5 +37,5 @@ export default class SplitCard extends PureComponent {
 }
 
 export {
-  STYLES as CardStyles
+  STYLES as SplitCardStyles
 }
