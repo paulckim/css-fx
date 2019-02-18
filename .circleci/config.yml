@@ -1,0 +1,44 @@
+# CircleCI pipeline for publishing to NPM
+version: 2
+jobs:
+  publish-dry-run:
+    docker:
+      - image: circleci/node
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: chmod +x scripts/package.sh
+      - run: chmod +x scripts/publish-dry-run.sh
+      - run: ./scripts/package.sh
+      - run: ./scripts/publish-dry-run.sh
+  publish:
+    docker:
+      - image: circleci/node
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: chmod +x scripts/package.sh
+      - run: chmod +x scripts/publish.sh
+      - run: ./scripts/package.sh
+      - run: ./scripts/publish.sh
+
+workflows:
+  version: 2
+  publish-workflow:
+    jobs:
+      - publish-dry-run
+      - publish:
+          requires:
+            - publish-dry-run
+          type: approval
+          filters:
+            branches:
+              only: master

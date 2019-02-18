@@ -1,3 +1,9 @@
+/**
+ * @file constants.js
+ * @author Paul Cheor Kim
+ * @license MIT
+ * @fileoverview All public constants for the Card Component.
+ */
 const STYLES = Object.freeze({
   fxCard: "fx-card",
   fxFadeDown: "fx-fade-down",

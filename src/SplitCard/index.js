@@ -1,5 +1,12 @@
+/**
+ * @file index.js
+ * @author Paul Cheor Kim
+ * @license MIT
+ * @fileoverview Entrypoint for the SplitCard Component. 
+ * This module also neatly "packages" and exports other 
+ * files/ variables of interest.
+ */
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
 import { STYLES } from "./constants.js";
 import "./styles.css";
 
@@ -11,11 +18,6 @@ const _defaultStyles = Object.freeze({
 });
 
 export default class SplitCard extends PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    fxActive: PropTypes.bool
-  }
-
   render() {
     const { className, fxActive, ...rest } = this.props;
     const styles = [];

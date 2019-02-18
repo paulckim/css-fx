@@ -1,4 +1,7 @@
 # React-FX
+
+[![CircleCI](https://circleci.com/gh/paulckim/react-fx.svg?style=svg)](https://circleci.com/gh/paulckim/react-fx)
+
 React-FX is a minimalistic, React library that defines Components with built-in CSS defaults - no JQuery.
 
 Originally intended to only exist for my personal website, React-FX is also for those that love writing their own stylesheets but are only looking for base/ wrapper Components (e.g. Component boilerplate) with default animations.
