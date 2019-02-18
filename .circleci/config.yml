@@ -35,10 +35,13 @@ workflows:
   publish-workflow:
     jobs:
       - publish-dry-run
-      - publish:
+      - npm-publish-approval:
           requires:
             - publish-dry-run
           type: approval
           filters:
             branches:
               only: master
+      - publish:
+          requires:
+            - npm-publish-approval
