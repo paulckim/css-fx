@@ -1,8 +1,27 @@
 # CircleCI pipeline for publishing to NPM
-# FIXME: automate NPM publish only on origin/<branch> -> origin/master merge
 version: 2
 jobs:
-  build:
+  publish-dry-run:
+    branches:
+      only:
+        - master
+    docker:
+      - image: circleci/node
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: chmod +x scripts/package.sh
+      - run: chmod +x scripts/publish-dry-run.sh
+      - run: ./scripts/package.sh
+      - run: ./scripts/publish-dry-run.sh
+  publish:
+    branches:
+      only:
+        - master
     docker:
       - image: circleci/node
     working_directory: ~/repo
@@ -16,3 +35,12 @@ jobs:
       - run: chmod +x scripts/publish.sh
       - run: ./scripts/package.sh
       - run: ./scripts/publish.sh
+
+workflows:
+  version: 2
+  publish:
+    jobs:
+      - publish-dry-run
+      - publish:
+          requires: publish-dry-run
+          type: approval
