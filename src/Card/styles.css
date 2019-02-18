@@ -1,0 +1,22 @@
+.fx-card {
+  width: 90%;
+  min-width: 20%;
+  background: cadetblue;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fx-fade-down.fx-active {
+  animation: fade-down 0.5s ease-in both;
+}
+
+@keyframes fade-down {
+  from {
+		opacity: 0;
+		transform: translateY(-10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

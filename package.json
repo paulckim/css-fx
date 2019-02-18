@@ -1,0 +1,18 @@
+{
+  "name": "react-fx",
+  "version": "1.0.0",
+  "description": "A minimalistic, React library built with pure CSS3 animations - JQuery free.",
+  "author": {
+    "name": "Paul Kim",
+    "email": "contact@paulckim.com"
+  },
+  "devDependencies": {
+    "ava": "^1.2.1",
+    "react-test-renderer": "^16.8.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  }
+}
