@@ -2,7 +2,7 @@
 # FIXME: automate NPM publish only on origin/<branch> -> origin/master merge
 version: 2
 jobs:
-  publish:
+  build:
     docker:
       - image: circleci/node
     working_directory: ~/repo
