@@ -18,11 +18,8 @@
 	opacity: 1;
 }
 /* [START] Collapse Animation Styles */
-.fx-left-card.fx-collapse.fx-active {
+.fx-left-card.fx-collapse {
 	animation: collapse-left 0.4s ease-in both;
-}
-.fx-right-card.fx-collapse.fx-active {
-	animation: collapse-right 0.4s ease-in both;
 }
 @keyframes collapse-left {
 	0% {
@@ -41,6 +38,9 @@
 		-webkit-clip-path: none;
 		clip-path: none;
 	}
+}
+.fx-right-card.fx-collapse {
+	animation: collapse-right 0.4s ease-in both;
 }
 @keyframes collapse-right {
   0% {
@@ -61,13 +61,13 @@
 }
 /* [END] Collapse Animation Styles */
 /* [START] Split Animation Styles */
-.fx-left-card.fx-split.fx-active {
+.fx-left-card.fx-split {
 	opacity: 1;
 	-webkit-clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 	clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 	animation: split-left 0.4s ease-in both;
 }
-.fx-right-card.fx-split.fx-active {
+.fx-right-card.fx-split {
 	opacity: 1;
 	-webkit-clip-path: polygon(87.5% 0, 100% 0, 100% 100%,12.5% 100%);
 	clip-path: polygon(87.5% 0, 100% 0, 100% 100%, 12.5% 100%);
