@@ -65,16 +65,13 @@ To use the SplitCard Component:
 function render() {
   return(
     <Fragment>
-      // Card is IDLE. Setting fxActive to true does nothing:
-      <SplitCard />
-      // When fxActive is set to true, the Card will fade in and collapse horizontally.
-      <SplitCard className={fxCollapse}>
+      <SplitCard /> // Card is idle because no stylesheet is applied
+      <SplitCard className={fxCollapse}> // Card will fade in and collapse horizontally
         <h1>Card Title</h1>
         <br />
         <p>Lorem Ipsum...</p>
       </SplitCard>
-      // When fxActive is set to true, the Card will fade out and split horizontally.
-      <SplitCard className={fxSplit}>
+      <SplitCard className={fxSplit}> // Card will fade out and split horizontally
         <h1>Card Title</h1>
         <br />
         <p>Lorem Ipsum...</p>
