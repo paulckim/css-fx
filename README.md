@@ -6,13 +6,123 @@ React-FX is a minimalistic, React library that defines Components with built-in 
 
 Originally intended to only exist for my personal website, React-FX is also for those that love writing their own stylesheets but are only looking for base/ wrapper Components (e.g. Component boilerplate) with default animations.
 
-## Components List
-Here's a short list of Components:
-* Container
-* Card
-* SplitCard
+## Getting Started
+Installing witn npm:
+```bash
+npm i react-fx
+```
 
-### Future Components
+Installing witn yarn:
+```bash
+yarn add react-fx
+```
+
+## Components List
+I don't have any official documentations, but I plan on generating those sometime in the future.
+
+`Note: fxActive props will probably be removed. It's pretty redundant.`
+
+### Container
+The Container Component is pretty bland and straight forward.
+
+It's a block element with a min-width and max-width restriction. The rest is filled as margin using auto.
+
+Import the Container Component:
+```js
+import Container from "react-fx/Container";
+```
+
+Use it like you would with any regular React HtmlElement:
+```js
+//...
+render() {
+  return (
+    <Container>
+      <div>Element 1</div>
+      <div>Element 2</div>
+    </Container>
+  );
+}
+```
+
+### Card
+The Card Component has the following CSS animations:
+* fxFadeDown
+
+Import the Container Component:
+```js
+import Card, { CardStyles } from "react-fx/Card";
+```
+
+To use the Card Component:
+```js
+// Card is IDLE. Setting fxActive to true does nothing:
+render() {
+  return (
+    <Card>
+      <h1>Card Title</h1>
+      <br />
+      <p>Lorem Ipsum...</p>
+    </Card>
+  );
+}
+// When fxActive is set to true, the Card will fade in and down.
+render() {
+  return (
+    <Card className={CardStyles.fxFadeDown} fxActive={true}>
+      <h1>Card Title</h1>
+      <br />
+      <p>Lorem Ipsum...</p>
+    </Card>
+  );
+}
+```
+
+### SplitCard
+The SplitCard Component has the following animations:
+* fxCollapse
+* fxSplit
+
+Import the SplitCard Component:
+```js
+import SplitCard, { SplitCardStyles } from "react-fx/SplitCard";
+```
+
+To use the SplitCard Component:
+```js
+// Card is IDLE. Setting fxActive to true does nothing:
+render() {
+  return (
+    <SplitCard>
+      <h1>Card Title</h1>
+      <br />
+      <p>Lorem Ipsum...</p>
+    </SplitCard>
+  );
+}
+// When fxActive is set to true, the Card will fade in and collapse horizontally.
+render() {
+  return (
+    <SplitCard className={CardStyles.fxCollapse} fxActive={true}>
+      <h1>Card Title</h1>
+      <br />
+      <p>Lorem Ipsum...</p>
+    </SplitCard>
+  );
+}
+// When fxActive is set to true, the Card will fade out and split horizontally.
+render() {
+  return (
+    <SplitCard className={CardStyles.fxSplit} fxActive={true}>
+      <h1>Card Title</h1>
+      <br />
+      <p>Lorem Ipsum...</p>
+    </SplitCard>
+  );
+}
+```
+
+## Future Components
 An informal list of Components I plan on creating sometime in the future:
 * Row
 * NavBar

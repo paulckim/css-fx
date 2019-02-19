@@ -7,13 +7,20 @@
  * variables of interest.
  */
 import React, { PureComponent } from "react";
-import { STYLES, DEFAULT_STYLES } from "./constants.js";
 import "./styles.css";
+
+const _styles = Object.freeze({
+  fxContainer: "fx-container"
+});
+
+const _defaultStyles = Object.freeze([
+  _styles.fxContainer
+]);
 
 export default class Container extends PureComponent {
   render() {
     const { className, ...rest } = this.props;
-    const styles = [...DEFAULT_STYLES];
+    const styles = [..._defaultStyles];
     if(className) styles.push(className);
     return (
       <div className={styles.join(' ')} {...rest} >
