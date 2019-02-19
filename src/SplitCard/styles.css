@@ -1,3 +1,7 @@
+/* Customize-able overflow: hidden */
+.fx-hide-overflow {
+	overflow: hidden;
+}
 /* Parent (wrapper/ anchor) Element style */
 .fx-split-card {
 	position: relative;
@@ -5,10 +9,12 @@
 /* Background Element style */
 .fx-left-card {
 	position: absolute;
+	float: left;
 	opacity: 0;
 }
 /* Foreground Element style */
 .fx-right-card {
+	float: right;
 	opacity: 1;
 }
 /* [START] Collapse Animation Styles */
