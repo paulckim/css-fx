@@ -7,37 +7,36 @@
  * files/ variables of interest.
  */
 import React, { PureComponent } from "react";
-import { STYLES } from "./constants.js";
 import "./styles.css";
 
-
-const _defaultStyles = Object.freeze({
-  parentWrapper: "fx-split-card",
-  leftChild: "fx-left-card",
-  rightChild: "fx-right-card",
-  hideOverflow: "fx-hide-overflow"
-});
+// private DEFAULT styles:
+const _leftStyle = "fx-left-card";
+const _rightStyle = "fx-right-card";
+const _parentStyle = "fx-split-card";
+const _hideOverflowStyle = "fx-hide-overflow";
 
 export default class SplitCard extends PureComponent {
   render() {
-    const { className, fxActive, fxOverflow, ...rest } = this.props;
-    const styles = [], parentStyles = [ _defaultStyles.parentWrapper ];
+    const { className, fxOverflow, ...rest } = this.props;
+    const styles = [], parentStyles = [ _parentStyle ];
     if(className) styles.push(className);
-    if(fxActive) styles.push(STYLES.fxActive);
-    if(!fxOverflow) parentStyles.push(_defaultStyles.hideOverflow);
+    if(!fxOverflow) parentStyles.push(_hideOverflowStyle);
     return (
       <div className={parentStyles.join(" ")} {...rest} >
-        <div className={`${_defaultStyles.leftChild} ${styles.join(" ")}`}>
+        <div className={`${_leftStyle} ${styles.join(" ")}`}>
           {this.props.children}
         </div>
-        <div className={`${_defaultStyles.rightChild} ${styles.join(" ")}`}>
+        <div className={`${_rightStyle} ${styles.join(" ")}`}>
           {this.props.children}
         </div>
       </div>
     );
   }
 }
-
+// Export public style sheetnames
+const fxCollapse = "fx-collapse";
+const fxSplit = "fx-split";
 export {
-  STYLES as SplitCardStyles
+  fxCollapse,
+  fxSplit
 }

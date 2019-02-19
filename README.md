@@ -17,66 +17,36 @@ Installing witn yarn:
 yarn add react-fx
 ```
 
-## Components List
-I don't have any official documentations, but I plan on generating those sometime in the future.
+## Styles
+Below is a list of all react-fx CSS animations.
 
-`Note: fxActive props will probably be removed. It's pretty redundant.`
-
-### Container
-The Container Component is pretty bland and straight forward.
-
-It's a block element with a min-width and max-width restriction. The rest is filled as margin using auto.
-
-Import the Container Component:
+### Fade In Animations
+Import the Fade In stylesheets like so:
 ```js
-import Container from "react-fx/Container";
+import "react-fx/styles/fade/styles.css";
 ```
-
-Use it like you would with any regular React HtmlElement:
+You can also import the stylesheet names (string) as constants:
 ```js
-//...
+import {
+  fxFadeDown,
+  fxFadeUp
+} from "react-fx/styles/fade";
+```
+Apply the stylesheets to your React HtmlElements:
+```js
 render() {
   return (
-    <Container>
-      <div>Element 1</div>
-      <div>Element 2</div>
-    </Container>
+    <Fragment>
+      <div className={fxFadeDown}>Fade In Down</div>
+      <div className={fxFadeUp}>Fade In Up</div>
+    </Fragment>
   );
 }
 ```
 
-### Card
-The Card Component has the following CSS animations:
-* fxFadeDown
-
-Import the Container Component:
-```js
-import Card, { CardStyles } from "react-fx/Card";
-```
-
-To use the Card Component:
-```js
-// Card is IDLE. Setting fxActive to true does nothing:
-render() {
-  return (
-    <Card>
-      <h1>Card Title</h1>
-      <br />
-      <p>Lorem Ipsum...</p>
-    </Card>
-  );
-}
-// When fxActive is set to true, the Card will fade in and down.
-render() {
-  return (
-    <Card className={CardStyles.fxFadeDown} fxActive={true}>
-      <h1>Card Title</h1>
-      <br />
-      <p>Lorem Ipsum...</p>
-    </Card>
-  );
-}
-```
+## Components
+This userland module is mainly a lightweight CSS library; however, some animations 
+are easier to implement with React Components.
 
 ### SplitCard
 The SplitCard Component has the following animations:
@@ -85,48 +55,51 @@ The SplitCard Component has the following animations:
 
 Import the SplitCard Component:
 ```js
-import SplitCard, { SplitCardStyles } from "react-fx/SplitCard";
+import SplitCard, {
+  fxCollapse, fxSplit
+} from "react-fx/SplitCard";
 ```
 
 To use the SplitCard Component:
 ```js
-// Card is IDLE. Setting fxActive to true does nothing:
-render() {
-  return (
-    <SplitCard>
-      <h1>Card Title</h1>
-      <br />
-      <p>Lorem Ipsum...</p>
-    </SplitCard>
-  );
-}
-// When fxActive is set to true, the Card will fade in and collapse horizontally.
-render() {
-  return (
-    <SplitCard className={CardStyles.fxCollapse} fxActive={true}>
-      <h1>Card Title</h1>
-      <br />
-      <p>Lorem Ipsum...</p>
-    </SplitCard>
-  );
-}
-// When fxActive is set to true, the Card will fade out and split horizontally.
-render() {
-  return (
-    <SplitCard className={CardStyles.fxSplit} fxActive={true}>
-      <h1>Card Title</h1>
-      <br />
-      <p>Lorem Ipsum...</p>
-    </SplitCard>
+function render() {
+  return(
+    <Fragment>
+      <SplitCard /> // Card is idle because no stylesheet is applied
+      <SplitCard className={fxCollapse}> // Card will fade in and collapse horizontally
+        <h1>Card Title</h1>
+        <br />
+        <p>Lorem Ipsum...</p>
+      </SplitCard>
+      <SplitCard className={fxSplit}> // Card will fade out and split horizontally
+        <h1>Card Title</h1>
+        <br />
+        <p>Lorem Ipsum...</p>
+      </SplitCard>
+    </Fragment>
   );
 }
 ```
+By default, the parent-most element of SplitCard applies:
+```css
+overflow: hidden;
+```
+If the `fxOverflow` property is set to true:
+```js
+<SplitCard className={fxSplit} fxOverflow={true}>
+  <h1>Card Title</h1>
+  <br />
+  <p>Lorem Ipsum...</p>
+</SplitCard>
+```
+then the css property:
+```css
+overflow: hidden;
+```
+will be *removed* from the parent-most element of SplitCard.
 
-## Future Components
-An informal list of Components I plan on creating sometime in the future:
-* Row
-* NavBar
-* Button
+Setting fxOverflow to `true` means that you are responsible for handling 
+overflow in another ancestor element.
 
 ## Maintenance
 I may be slow to respond since I tend to get pretty busy.

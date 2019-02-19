@@ -1,22 +1,24 @@
+/**
+ * @file gulpfile.js
+ * @author Paul Cheor Kim
+ * @license MIT
+ * @fileoverview Gulpfile script for building, minifying, 
+ * and packaging jsx and css.
+ */
 const { src, task, dest, parallel } = require("gulp");
 const babel = require("gulp-babel");
+const minifyCss = require('gulp-clean-css');
 
-const TransformTaskName = `transform-task`;
-const PackageTaskName = `package-task`;
-const components = [
-  "Card",
-  "Container",
-  "SplitCard"
-];
 const tasks = [];
-const transformTasks = components.map(component => `${TransformTaskName}<${component}>`);
-const cssPkgTasks = components.map(component => `${component}-CSS-Package`);
-components.forEach(component => {
-  const jsxTask = `transform-task [jsx] [${component}]`;
-  const cssTask = `package-task [css] [${component}]`;
+/**
+ * Jsx Tranform Tasks
+ */
+[
+  "SplitCard",
+  "styles"
+].forEach(component => {
+  const jsxTask = `[transform-task] [jsx] [${component}]`;
   tasks.push(jsxTask);
-  tasks.push(cssTask);
-
   const destDir = `dist/${component}`;
   task(jsxTask, () => {
     return src(`src/${component}/**/*.js`)
@@ -25,8 +27,22 @@ components.forEach(component => {
       }))
       .pipe(dest(destDir));
   });
-  task(cssTask, () => {
-    return src(`src/${component}/**/*.css`)
+});
+/**
+ * CSS minification Gulp Tasks
+ */
+[
+  "SplitCard",
+  "styles"
+].forEach(styleDir => {
+  const minifyTask = `[package-task] [css] [${styleDir}]`;
+  tasks.push(minifyTask);
+  const destDir = `dist/${styleDir}`;
+  task(minifyTask, () => {
+    return src(`src/${styleDir}/**/*.css`)
+      .pipe(minifyCss({
+        compatibility: "ie8"
+      }))
       .pipe(dest(destDir));
   });
 });

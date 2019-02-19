@@ -1,6 +1,6 @@
 {
   "name": "react-fx",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A minimalistic, React library built with pure CSS3 animations - JQuery free.",
   "author": "Paul Kim <contact@paulckim.com>",
   "license": "MIT",
@@ -18,11 +18,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "ava": "^1.2.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-test-renderer": "^16.8.1"
