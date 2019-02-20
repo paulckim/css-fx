@@ -1,105 +1,126 @@
-# React-FX
+# CSS-FX
+[![CircleCI](https://circleci.com/gh/paulckim/css-fx/tree/master.svg?style=svg)](https://circleci.com/gh/paulckim/css-fx/tree/master)
 
-[![CircleCI](https://circleci.com/gh/paulckim/react-fx.svg?style=svg)](https://circleci.com/gh/paulckim/react-fx)
+CSS-FX is a minimalistic, CSS animations library.
 
-React-FX is a minimalistic, React library that defines Components with built-in CSS defaults - no JQuery.
+CSS-fx is intended for those that want to be JQuery.
 
-Originally intended to only exist for my personal website, React-FX is also for those that love writing their own stylesheets but are only looking for base/ wrapper Components (e.g. Component boilerplate) with default animations.
+I am also a firm believer in explicitly getting what you asked for.
+
+
+## Notes
+I will be consolidating the CSS soon.
+
+In the future, you should be able to import like so:
+```html
+<head>
+  <link rel="stylesheet" href="css-fx.min.css">
+</head>
+```
 
 ## Getting Started
 Installing witn npm:
 ```bash
-npm i react-fx
+npm i css-fx
 ```
 
 Installing witn yarn:
 ```bash
-yarn add react-fx
+yarn add css-fx
 ```
 
 ## Styles
-Below is a list of all react-fx CSS animations.
+Below is a list of all css-fx CSS animations.
 
-### Fade In Animations
-Import the Fade In stylesheets like so:
+### Fade In CSS
+Fade in animations:
+* `fx-fade-in-down`
+* `fx-fade-in-up`
+
+#### Example
+Here's an example of Split card using React:
 ```js
-import "react-fx/styles/fade/styles.css";
-```
-You can also import the stylesheet names (string) as constants:
-```js
-import {
-  fxFadeDown,
-  fxFadeUp
-} from "react-fx/styles/fade";
-```
-Apply the stylesheets to your React HtmlElements:
-```js
+setAnimating(isActive) {
+  this.setState({ isActive: isActive })
+}
 render() {
+  const { isActive } = this.state;
+  const animationCss = isActive 
+    ? "fx-fade-in-down" 
+    : "fx-fade-in-up";
   return (
     <Fragment>
-      <div className={fxFadeDown}>Fade In Down</div>
-      <div className={fxFadeUp}>Fade In Up</div>
+      <div className={animationCss}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum tellus euismod neque finibus accumsan. Suspendisse potenti. Fusce vehicula lorem quis enim hendrerit, ac tempus justo tempus.
+      </div>
+      <button onClick={() => {
+        this.setAnimating(!this.state.isActive)
+      }}>
+        Animate Me!
+      </button>
     </Fragment>
   );
 }
 ```
 
-## Components
-This userland module is mainly a lightweight CSS library; however, some animations 
-are easier to implement with React Components.
-
-### SplitCard
-The SplitCard Component has the following animations:
-* fxCollapse
-* fxSplit
-
-Import the SplitCard Component:
+### Split CSS
+CSS Module import:
 ```js
-import SplitCard, {
-  fxCollapse, fxSplit
-} from "react-fx/SplitCard";
+import styles from "css-fx/fade-in/styles.css";
+```
+HTML stylesheet import:
+```html
+<head>
+  <link rel="stylesheet" href="css-fx/fade-in/styles.css">
+</head>
 ```
 
-To use the SplitCard Component:
+Split CSS anchors:
+* "fx-split-root"
+* "fx-left-split"
+* "fx-right-split"
+
+Split animations:
+* "fx-collapse"
+* "fx-split"
+
+Split syntax sugar:
+* "fx-hide-overflow"
+
+#### Example
+Here's an example of Split card using React:
 ```js
-function render() {
-  return(
-    <Fragment>
-      <SplitCard /> // Card is idle because no stylesheet is applied
-      <SplitCard className={fxCollapse}> // Card will fade in and collapse horizontally
-        <h1>Card Title</h1>
-        <br />
-        <p>Lorem Ipsum...</p>
-      </SplitCard>
-      <SplitCard className={fxSplit}> // Card will fade out and split horizontally
-        <h1>Card Title</h1>
-        <br />
-        <p>Lorem Ipsum...</p>
-      </SplitCard>
-    </Fragment>
+setAnimating(isActive) {
+  this.setState({ isActive: isActive })
+}
+render() {
+  const { isActive } = this.state;
+  const animationCss = isActive 
+    ? "fx-collapse" : "fx-split";
+  return (
+    <div className={`fx-split-root ${animationCss}`}>
+      <div className="fx-left-split">
+        {this.props.children}
+      </div>
+      <div className="fx-right-split">
+        {this.props.children}
+      </div>
+    </div>
   );
 }
 ```
-By default, the parent-most element of SplitCard applies:
-```css
-overflow: hidden;
-```
-If the `fxOverflow` property is set to true:
-```js
-<SplitCard className={fxSplit} fxOverflow={true}>
-  <h1>Card Title</h1>
-  <br />
-  <p>Lorem Ipsum...</p>
-</SplitCard>
-```
-then the css property:
-```css
-overflow: hidden;
-```
-will be *removed* from the parent-most element of SplitCard.
 
-Setting fxOverflow to `true` means that you are responsible for handling 
-overflow in another ancestor element.
+In this example, we are only applying the fx-collapse animation. 
+
+In order to use the split animations, you **must** apply the `fx-split-root` 
+class to the parent html element.
+
+You **must** also apply the `fx-left-split` class to the background element 
+(background in terms of html stacking relativity) and the `fx-right-split` 
+class to the foreground element.
+
+As soon as you apply the CSS animation of your choice (e.g. `fx-collapse`), 
+the animations will start.
 
 ## Maintenance
 I may be slow to respond since I tend to get pretty busy.
