@@ -1,24 +1,23 @@
-/* Customize-able overflow: hidden */
 .fx-hide-overflow {
 	overflow: hidden;
 }
 /* Parent (wrapper/ anchor) Element style */
-.fx-split-card {
+.fx-split-root {
 	position: relative;
 }
 /* Background Element style */
-.fx-left-card {
+.fx-left-split {
 	position: absolute;
 	float: left;
 	opacity: 0;
 }
 /* Foreground Element style */
-.fx-right-card {
+.fx-right-split {
 	float: right;
 	opacity: 1;
 }
 /* [START] Collapse Animation Styles */
-.fx-left-card.fx-collapse {
+.fx-left-split.fx-collapse {
 	animation: collapse-left 0.4s ease-in both;
 }
 @keyframes collapse-left {
@@ -39,7 +38,7 @@
 		clip-path: none;
 	}
 }
-.fx-right-card.fx-collapse {
+.fx-right-split.fx-collapse {
 	animation: collapse-right 0.4s ease-in both;
 }
 @keyframes collapse-right {
@@ -61,13 +60,13 @@
 }
 /* [END] Collapse Animation Styles */
 /* [START] Split Animation Styles */
-.fx-left-card.fx-split {
+.fx-split-root.fx-split > .fx-left-split {
 	opacity: 1;
 	-webkit-clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 	clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 	animation: split-left 0.4s ease-in both;
 }
-.fx-right-card.fx-split {
+.fx-split-root.fx-split > .fx-right-split {
 	opacity: 1;
 	-webkit-clip-path: polygon(87.5% 0, 100% 0, 100% 100%,12.5% 100%);
 	clip-path: polygon(87.5% 0, 100% 0, 100% 100%, 12.5% 100%);

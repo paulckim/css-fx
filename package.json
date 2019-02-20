@@ -1,38 +1,52 @@
 {
-  "name": "react-fx",
-  "version": "1.0.6",
-  "description": "A minimalistic, React library built with pure CSS3 animations - JQuery free.",
+  "name": "css-fx",
+  "version": "1.0.0",
+  "description": "A minimalistic, CSS animations library.",
   "author": "Paul Kim <contact@paulckim.com>",
   "license": "MIT",
-  "homepage": "https://github.com/paulckim/react-fx",
+  "homepage": "https://github.com/paulckim/css-fx",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paulckim/react-fx.git"
+    "url": "https://github.com/paulckim/css-fx.git"
   },
   "scripts": {
-    "build": "node ./node_modules/gulp-cli/bin/gulp.js"
+    "build": "node ./node_modules/gulp-cli/bin/gulp.js",
+    "test": "node ./node_modules/ava/cli.js"
   },
-  "peerDependencies": {
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+  "ava": {
+    "files": [
+      "test/**/*.test.js",
+      "!test/test-components/**/*.js"
+    ],
+    "require": [
+      "@babel/register"
+    ],
+    "verbose": true,
+    "babel": {
+      "testOptions": {
+        "babelrc": true
+      }
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "ava": "^1.2.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.0.0",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
     "react-test-renderer": "^16.8.1"
   },
   "bugs": {
-    "url": "https://github.com/paulckim/react-fx/issues"
+    "url": "https://github.com/paulckim/css-fx/issues"
   },
   "keywords": [
-    "react",
+    "css",
+    "animations",
     "fx",
-    "css"
+    "light",
+    "cross platform"
   ]
 }

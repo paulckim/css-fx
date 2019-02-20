@@ -14,17 +14,15 @@ const tasks = [];
  * Jsx Tranform Tasks
  */
 [
-  "SplitCard",
-  "styles"
+  "fade-in",
+  "split"
 ].forEach(component => {
   const jsxTask = `[transform-task] [jsx] [${component}]`;
   tasks.push(jsxTask);
   const destDir = `dist/${component}`;
   task(jsxTask, () => {
     return src(`src/${component}/**/*.js`)
-      .pipe(babel({
-        plugins: [ "@babel/plugin-transform-react-jsx" ]
-      }))
+      .pipe(babel())
       .pipe(dest(destDir));
   });
 });
@@ -32,17 +30,15 @@ const tasks = [];
  * CSS minification Gulp Tasks
  */
 [
-  "SplitCard",
-  "styles"
+  "fade-in",
+  "split"
 ].forEach(styleDir => {
   const minifyTask = `[package-task] [css] [${styleDir}]`;
   tasks.push(minifyTask);
   const destDir = `dist/${styleDir}`;
   task(minifyTask, () => {
     return src(`src/${styleDir}/**/*.css`)
-      .pipe(minifyCss({
-        compatibility: "ie8"
-      }))
+      .pipe(minifyCss({ compatibility: "ie8" }))
       .pipe(dest(destDir));
   });
 });
