@@ -36,7 +36,33 @@ Fade in animations:
 * `fx-fade-in-down`
 * `fx-fade-in-up`
 
-### Split Card CSS
+#### Example
+Here's an example of Split card using React:
+```js
+setAnimating(isActive) {
+  this.setState({ isActive: isActive })
+}
+render() {
+  const { isActive } = this.state;
+  const animationCss = isActive 
+    ? "fx-fade-in-down" 
+    : "fx-fade-in-up";
+  return (
+    <Fragment>
+      <div className={animationCss}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum tellus euismod neque finibus accumsan. Suspendisse potenti. Fusce vehicula lorem quis enim hendrerit, ac tempus justo tempus.
+      </div>
+      <button onClick={() => {
+        this.setAnimating(!this.state.isActive)
+      }}>
+        Animate Me!
+      </button>
+    </Fragment>
+  );
+}
+```
+
+### Split CSS
 CSS Module import:
 ```js
 import styles from "css-fx/fade-in/styles.css";
@@ -48,16 +74,16 @@ HTML stylesheet import:
 </head>
 ```
 
-Split card CSS anchors:
+Split CSS anchors:
 * "fx-split-root"
 * "fx-left-split"
 * "fx-right-split"
 
-Split card animations:
+Split animations:
 * "fx-collapse"
 * "fx-split"
 
-Split card syntax sugar:
+Split syntax sugar:
 * "fx-hide-overflow"
 
 #### Example
@@ -68,9 +94,10 @@ setAnimating(isActive) {
 }
 render() {
   const { isActive } = this.state;
-  const activeCss = isActive ? "fx-collapse" : "";
+  const animationCss = isActive 
+    ? "fx-collapse" : "fx-split";
   return (
-    <div className={`fx-split-root ${isActive}`}>
+    <div className={`fx-split-root ${animationCss}`}>
       <div className="fx-left-split">
         {this.props.children}
       </div>
