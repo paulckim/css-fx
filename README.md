@@ -1,4 +1,5 @@
 # CSS-FX
+[![CircleCI](https://circleci.com/gh/paulckim/css-fx/tree/master.svg?style=svg)](https://circleci.com/gh/paulckim/css-fx/tree/master)
 
 CSS-FX is a minimalistic, CSS animations library.
 
