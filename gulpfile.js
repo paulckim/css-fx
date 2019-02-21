@@ -6,41 +6,48 @@
  * and packaging jsx and css.
  */
 const { src, task, dest, parallel } = require("gulp");
-const babel = require("gulp-babel");
-const minifyCss = require('gulp-clean-css');
+const tsc = require("gulp-typescript");
+const { compilerOptions } = require("./tsconfig.json");
+const prefixer = require("gulp-autoprefixer");
+const cssnano = require("gulp-cssnano");
+const concat = require("gulp-concat-css");
 
-const tasks = [];
+const SOURCE_DIR = "src";
+const DEST_DIR = "dist";
+
 /**
- * Jsx Tranform Tasks
+ * .ts Tranform Tasks
  */
-[
-  "fade-in",
-  "split"
-].forEach(component => {
-  const jsxTask = `[transform-task] [jsx] [${component}]`;
-  tasks.push(jsxTask);
-  const destDir = `dist/${component}`;
-  task(jsxTask, () => {
-    return src(`src/${component}/**/*.js`)
-      .pipe(babel())
-      .pipe(dest(destDir));
-  });
+const tscTask = `[ts] [/${SOURCE_DIR}]`;
+task(tscTask, () => {
+  return src(`${SOURCE_DIR}/**/*.ts`)
+    .pipe(tsc(compilerOptions))
+  .pipe(dest(DEST_DIR));
 });
 /**
- * CSS minification Gulp Tasks
+ * .css Regular Transform Task
  */
-[
-  "fade-in",
-  "split"
-].forEach(styleDir => {
-  const minifyTask = `[package-task] [css] [${styleDir}]`;
-  tasks.push(minifyTask);
-  const destDir = `dist/${styleDir}`;
-  task(minifyTask, () => {
-    return src(`src/${styleDir}/**/*.css`)
-      .pipe(minifyCss({ compatibility: "ie8" }))
-      .pipe(dest(destDir));
-  });
+const outFile = "css-fx.css";
+const cssTask = `[css] [${outFile}]`;
+task(cssTask, () => {
+  return src(`${SOURCE_DIR}/**/*.css`)
+    .pipe(prefixer())
+      .pipe(concat(outFile))
+    .pipe(dest(DEST_DIR));
+});
+/**
+ * .css Minified Transform Task
+ */
+const outMinFile = "css-fx.min.css";
+const cssMinTask = `[css] [${outMinFile}]`;
+task(cssMinTask, () => {
+  return src(`${SOURCE_DIR}/**/*.css`)
+  .pipe(prefixer())
+    .pipe(concat(outMinFile))
+    .pipe(cssnano())
+  .pipe(dest(DEST_DIR));
 });
 
-task("default", parallel(...tasks));
+task("default", parallel([
+  tscTask, cssTask, cssMinTask
+]));

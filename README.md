@@ -7,16 +7,7 @@ CSS-fx is intended for those that want to be JQuery.
 
 I am also a firm believer in explicitly getting what you asked for.
 
-
-## Notes
-I will be consolidating the CSS soon.
-
-In the future, you should be able to import like so:
-```html
-<head>
-  <link rel="stylesheet" href="css-fx.min.css">
-</head>
-```
+This module only provides CSS animations, nothing more and nothing less.
 
 ## Getting Started
 Installing witn npm:
@@ -27,6 +18,27 @@ npm i css-fx
 Installing witn yarn:
 ```bash
 yarn add css-fx
+```
+
+To import and reference the stylesheets:
+```html
+<head>
+  <link rel="stylesheet" href="css-fx.css">
+</head>
+```
+Or alternatively:
+```html
+<head>
+  <link rel="stylesheet" href="css-fx.min.css">
+</head>
+```
+
+If you are referencing the style sheet in a non-compliant ES5 
+manner (e.g. CommonJS), you can CSS Module import:
+```js
+import styles from "css-fx/css-fx.css";
+/** or **/
+import styles from "css-fx/css-fx.min.css";
 ```
 
 ## Styles
@@ -50,8 +62,13 @@ render() {
     : "fx-fade-in-up";
   return (
     <Fragment>
-      <div className={animationCss}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum tellus euismod neque finibus accumsan. Suspendisse potenti. Fusce vehicula lorem quis enim hendrerit, ac tempus justo tempus.
+      <div className={animationCss} style={
+        { height: "300px", width: "500px" }
+      }>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Nullam vestibulum tellus euismod neque finibus accumsan. 
+        Suspendisse potenti. Fusce vehicula lorem quis enim 
+        hendrerit, ac tempus justo tempus.
       </div>
       <button onClick={() => {
         this.setAnimating(!this.state.isActive)
@@ -64,17 +81,6 @@ render() {
 ```
 
 ### Split CSS
-CSS Module import:
-```js
-import styles from "css-fx/fade-in/styles.css";
-```
-HTML stylesheet import:
-```html
-<head>
-  <link rel="stylesheet" href="css-fx/fade-in/styles.css">
-</head>
-```
-
 Split CSS anchors:
 * "fx-split-root"
 * "fx-left-split"
