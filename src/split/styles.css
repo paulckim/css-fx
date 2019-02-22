@@ -2,7 +2,7 @@
 	overflow: hidden;
 }
 /* Parent (wrapper/ anchor) Element style */
-.fx-split-root {
+.fx-root-split {
 	position: relative;
 }
 /* Background Element style */
@@ -17,67 +17,58 @@
 	opacity: 1;
 }
 /* [START] Collapse Animation Styles */
-.fx-left-split.fx-collapse {
-	animation: collapse-left 0.4s ease-in both;
+.fx-root-split.fx-collapse > .fx-left-split {
+	animation: collapse-left 0.4s ease-in;
+}
+.fx-root-split.fx-collapse > .fx-right-split {
+	animation: collapse-right 0.4s ease-in;
 }
 @keyframes collapse-left {
 	0% {
 		opacity: 0;
-		transform: translateX(-0.3%);
-		-webkit-clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
+		transform: translateX(-0.75vw);
 		clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 	}
 	99.99999% {
-		opacity: 1;
-		-webkit-clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 		clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 	}
 	100% {
-		opacity: 0;
-		-webkit-clip-path: none;
+		opacity: 1;
 		clip-path: none;
 	}
-}
-.fx-right-split.fx-collapse {
-	animation: collapse-right 0.4s ease-in both;
 }
 @keyframes collapse-right {
   0% {
 		opacity: 0;
-		transform: translateX(0.3%);
-		-webkit-clip-path: polygon(87.5% 0, 100% 0, 100% 100%,12.5% 100%);
+		transform: translateX(0.75vw);
 		clip-path: polygon(87.5% 0, 100% 0, 100% 100%, 12.5% 100%);
 	}
 	99.99999% {
 		opacity: 1;
-		-webkit-clip-path: polygon(87.5% 0, 100% 0, 100% 100%, 12.5% 100%);
 		clip-path: polygon(87.5% 0, 100% 0, 100% 100%, 12.5% 100%);
 	}
 	100% {
-		-webkit-clip-path: none;
 		clip-path: none;
 	}
 }
 /* [END] Collapse Animation Styles */
 /* [START] Split Animation Styles */
-.fx-split-root.fx-split > .fx-left-split {
+.fx-root-split.fx-split > .fx-left-split {
 	opacity: 1;
-	-webkit-clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
 	clip-path: polygon(0 0, 87.5% 0, 12.5% 100%, 0 100%);
-	animation: split-left 0.4s ease-in both;
+	animation: split-left 0.4s ease-out;
 }
-.fx-split-root.fx-split > .fx-right-split {
+.fx-root-split.fx-split > .fx-right-split {
 	opacity: 1;
-	-webkit-clip-path: polygon(87.5% 0, 100% 0, 100% 100%,12.5% 100%);
 	clip-path: polygon(87.5% 0, 100% 0, 100% 100%, 12.5% 100%);
-	animation: split-right 0.4s ease-in both;
+	animation: split-right 0.4s ease-out;
 }
 @keyframes split-left {
 	0% {
 		opacity: 1;
 	}
 	99.99999% {
-		transform: translateX(-0.3%);
+		transform: translateX(-0.75vw);
 	}
 	100% {
 		opacity: 0;
@@ -89,7 +80,7 @@
 		opacity: 1;
 	}
 	99.99999% {
-		transform: translateX(0.3%);
+		transform: translateX(0.75vw);
 	}
 	100% {
 		transform: translateX(0);
