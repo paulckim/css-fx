@@ -1,10 +1,10 @@
 .fx-fade-in-down {
-  animation: fade-in-down 0.4s ease-in both;
+  animation: fade-in-down 0.4s ease-in;
 }
 @keyframes fade-in-down {
   from {
 		opacity: 0;
-		transform: translateY(-10%);
+		transform: translateY(-2vh);
 	}
 	to {
 		opacity: 1;
@@ -13,12 +13,12 @@
 }
 
 .fx-fade-in-up {
-  animation: fade-in-up 0.4s ease-in both;
+  animation: fade-in-up 0.4s ease-in;
 }
 @keyframes fade-in-up {
   from {
 		opacity: 0;
-		transform: translateY(10%);
+		transform: translateY(2vh);
 	}
 	to {
 		opacity: 1;
