@@ -21,24 +21,12 @@ yarn add css-fx
 ```
 
 To import and reference the stylesheets:
-```html
-<head>
-  <link rel="stylesheet" href="css-fx.css">
-</head>
-```
-Or alternatively:
-```html
-<head>
-  <link rel="stylesheet" href="css-fx.min.css">
-</head>
-```
-
-If you are referencing the style sheet in a non-compliant ES5 
-manner (e.g. CommonJS), you can CSS Module import:
 ```js
-import styles from "css-fx/css-fx.css";
+// import all styles
+import "css-fx/css-fx.css";
 /** or **/
-import styles from "css-fx/css-fx.min.css";
+// import as CSS Module
+import styles from "css-fx/css-fx.css";
 ```
 
 ## Styles
@@ -50,7 +38,7 @@ Fade in animations:
 * `fx-fade-in-up`
 
 #### Example
-Here's an example of Split card using React:
+Here's an example of the fade in animations using React:
 ```js
 setAnimating(isActive) {
   this.setState({ isActive: isActive })
@@ -82,7 +70,7 @@ render() {
 
 ### Split CSS
 Split CSS anchors:
-* "fx-split-root"
+* "fx-root-split"
 * "fx-left-split"
 * "fx-right-split"
 
@@ -94,6 +82,18 @@ Split syntax sugar:
 * "fx-hide-overflow"
 
 #### Example
+In this example, we are only applying the fx-collapse animation. 
+
+In order to use the split animations, you **must** apply the `fx-root-split` 
+class to the parent html element.
+
+You **must** also apply the `fx-left-split` class to the background element 
+(background in terms of html stacking relativity) and the `fx-right-split` 
+class to the foreground element.
+
+As soon as you apply the CSS animation of your choice (e.g. `fx-collapse`), 
+the animations will start.
+
 Here's an example of Split card using React:
 ```js
 setAnimating(isActive) {
@@ -104,29 +104,24 @@ render() {
   const animationCss = isActive 
     ? "fx-collapse" : "fx-split";
   return (
-    <div className={`fx-split-root ${animationCss}`}>
-      <div className="fx-left-split">
-        {this.props.children}
+    <Fragment>
+      <div className={`fx-root-split ${animationCss}`}>
+        <div className="fx-left-split">
+          {this.props.children}
+        </div>
+        <div className="fx-right-split">
+          {this.props.children}
+        </div>
       </div>
-      <div className="fx-right-split">
-        {this.props.children}
-      </div>
-    </div>
+      <button onClick={() => {
+        setAnimating(!this.state.isActive);
+      }}>
+        Toggle!
+      <button/>
+    </Fragement>
   );
 }
 ```
-
-In this example, we are only applying the fx-collapse animation. 
-
-In order to use the split animations, you **must** apply the `fx-split-root` 
-class to the parent html element.
-
-You **must** also apply the `fx-left-split` class to the background element 
-(background in terms of html stacking relativity) and the `fx-right-split` 
-class to the foreground element.
-
-As soon as you apply the CSS animation of your choice (e.g. `fx-collapse`), 
-the animations will start.
 
 ## Maintenance
 I may be slow to respond since I tend to get pretty busy.

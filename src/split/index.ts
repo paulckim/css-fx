@@ -1,5 +1,5 @@
 // Core styles related to positioning, stacking & etc.
-const fxRootSplit = "fx-split-root";
+const fxRootSplit = "fx-root-split";
 const fxLeftSplit = "fx-left-split";
 const fxRightSplit = "fx-right-split";
 // Animations of interest
